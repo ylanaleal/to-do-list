@@ -1,0 +1,58 @@
+<div class="list-card p-0">
+
+    <div class="title-home pt-4 px-4 pb-2 d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">To do</h4>
+      <p class="date mb-0 mt-2">{{currentDate}}</p>
+    </div>
+
+    <ul class="task-list p-4">
+      {{#if emptyTasks}}
+        <p class="task text-center">you have 0 tasks</p>
+      {{/if}}
+
+      {{#each tasks}}
+
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="todo d-flex align-items-center">
+            <div class="checkbox-wrapper">
+              <form action="/updatestatus" method="POST">
+                <label for="todo-{{@index}}" class="item">
+                  <input type="hidden" name="id" value={{this.id}}>
+                  <input type="hidden" name="done" value={{this.done}}>
+                  <input type="checkbox" id="todo-{{@index}}" class="hidden" onchange="this.form.submit()" {{#if this.done}}checked{{/if}}/>
+                  <label for="todo-{{@index}}" class="cbx">      
+                    <svg width="14px" height="12px" viewBox="0 0 14 12">
+                      <polyline points="1 7.6 5 11 13 1"></polyline>
+                    </svg>
+                  </label>
+                  <label for="todo-{{@index}}" class="cbx-lbl"><a href="tasks/{{this.id}}" class="task my-auto">{{this.title}}</a></label>
+                </label>
+              </form>
+            </div> 
+          </div>
+
+          <span class="actions d-flex align-items-center">
+            <div class="info">
+              <a href="/{{this.id}}"><i class="bi bi-info-circle"></i></i></a>
+            </div>
+
+            <div class="edit mx-3">
+              <a href="/edit/{{this.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+            </div>
+
+            <div class="delete">
+              <form action="/remove" method="POST">
+                <input type="hidden" name="id" value={{this.id}}>
+                <button class="btn px-0" type="submit">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </form>
+            </div>
+          </span>
+          
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+<a href="/add" class="plus-btn"><i class="fa-solid fa-circle-plus display-5"></i></a>

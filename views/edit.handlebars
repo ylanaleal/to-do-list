@@ -1,0 +1,23 @@
+<div class="list-card action">
+
+    <div class="title-home pt-4 px-4 pb-2 d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Edit task</h4>
+    <p class="date mb-0 mt-2">{{currentDate}}</p>
+  </div>
+
+    <form action="/edit" method="POST">
+        <input type="hidden" name="id" value={{task.id}}>
+        <div class="action-form p-4">
+        <div class="form-control">
+            <label for="title">name:</label>
+            <input type="text" name="title" placeholder="to-do" class="border-bottom" value="{{task.title}}">
+        </div>
+
+        <div class="form-control">
+            <label for="description">description:</label>
+            <textarea type="text" name="description" class="border-bottom" placeholder="what are you going to do?">{{task.description}}</textarea>
+        </div>
+        </div>
+</div>
+        <button type="submit" value="add" class="btn action-btn d-flex justify-content-center"><i class="fa-solid fa-check"></i></button>
+    </form>

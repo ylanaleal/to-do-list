@@ -1,0 +1,14 @@
+const express = require('express')
+const router = express.Router()
+const TaskController = require('../controllers/TaskController')
+
+router.get('/', TaskController.indexTasks)
+router.get('/add', TaskController.createTask)
+router.post('/add', TaskController.createTaskSave)
+router.post('/remove', TaskController.removeTask)
+router.get('/edit/:id([0-9]+)', TaskController.updateTask)
+router.post('/edit', TaskController.updateTaskPost)
+router.post('/updatestatus', TaskController.toggleTaskStatus)
+router.get('/:id([0-9]+)', TaskController.showTasks)
+
+module.exports = router
